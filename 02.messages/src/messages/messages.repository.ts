@@ -1,30 +1,3 @@
-# Service và Repository trong NestJS
-## 1. Service
-### 1.1. Giới thiệu
-- Service là một class chứa các hàm xử lý logic của ứng dụng.
-- Service được sử dụng để tách biệt logic xử lý dữ liệu và logic xử lý HTTP request.
-- Service có thể gọi các hàm từ các service khác hoặc từ repository.
-- Service được sử dụng trong controller để xử lý logic của ứng dụng.
-- Để tạo một service, sử dụng lệnh sau:
-```bash
-nest g service <service-name>
-```
-- Ví dụ: Tạo service `messages`:
-```bash
-nest g service messages
-```
-- Khi tạo service, NestJS sẽ tạo ra một file service với tên `<service-name>.service.ts` trong thư mục `src`.
-
-
-## 2. Repository
-### 2.1. Giới thiệu
-- Repository là một class chứa các hàm xử lý truy vấn dữ liệu từ cơ sở dữ liệu.
-- Repository được sử dụng để tách biệt logic truy vấn dữ liệu và logic xử lý dữ liệu.
-- Repository có thể gọi các hàm từ các repository khác.
-- Repository được sử dụng trong service để truy vấn dữ liệu từ cơ sở dữ liệu.
-- Ví dụ: Tạo repository `messages`:
->>message.repository.ts
-```typescript
 import { readFile, writeFile } from 'fs/promises'; // Nhập hàm đọc và ghi file
 
 export class MessageRepository {
@@ -52,4 +25,3 @@ export class MessageRepository {
     await writeFile('../../data/messages.json', JSON.stringify(message)); // Ghi lại file messages.json
   }
 }
-```
