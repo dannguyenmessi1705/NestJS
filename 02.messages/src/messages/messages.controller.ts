@@ -1,4 +1,11 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import {
+  Controller, // Thêm Controller để tạo controller
+  Get, // Thêm Get để tạo request với method GET
+  Post, // Thêm Post để tạo request với method POST
+  Body, // Thêm Body để lấy body của request
+  Param, // Thêm Param để lấy params của request
+  NotFoundException, // Thêm NotFoundException để xử lý lỗi 404
+} from '@nestjs/common';
 
 import { CreateMessageDto } from './dtos/create-message.dto'; // Nhập DTO của message để validate dữ liệu
 import { MessageService } from './messages.service';
@@ -23,8 +30,12 @@ export class MessagesController {
     return this.messageService.create(body.content); // Gọi hàm create từ service
   }
   @Get('/:id') // Tạo request với method GET và id là params của request
-  getMessage(@Param('id') id: string) {
+  async getMessage(@Param('id') id: string) {
     // Param là params của request
-    return this.messageService.findOne(id); // Gọi hàm findOne từ service
+    const message = await this.messageService.findOne(id); // Gọi hàm findOne từ service
+    if (!message) {
+      throw new NotFoundException('Message not found'); // Nếu không tìm thấy message thì throw lỗi 404
+    }
+    return message; // Trả về message nếu tìm thấy
   }
 }
