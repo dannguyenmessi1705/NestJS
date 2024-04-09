@@ -15,10 +15,7 @@ import { MessageService } from './messages.service';
 // Cách 2: Sử dụng decorator @Injectable để inject service vào controller (khuyến khích)
 @Controller('messages')
 export class MessagesController {
-  messageService: MessageService; // Khai báo biến messageService để sử dụng service
-  constructor() {
-    this.messageService = new MessageService(); // Khởi tạo messageService
-  }
+  constructor(public messageService: MessageService) {}
 
   @Get() // Tạo request với method GET
   listMessages() {

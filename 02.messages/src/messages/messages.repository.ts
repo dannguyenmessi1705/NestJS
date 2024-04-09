@@ -1,5 +1,7 @@
 import { readFile, writeFile } from 'fs/promises'; // Nhập hàm đọc và ghi file
+import { Injectable } from '@nestjs/common'; // Nhập Injectable từ package '@nestjs/common
 
+@Injectable() // Khai báo là một dependency của NestJS (để inject vào service)
 export class MessageRepository {
   // Repository của message
   async findOne(id: string) {
