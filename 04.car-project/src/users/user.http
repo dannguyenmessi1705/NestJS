@@ -1,0 +1,8 @@
+### CREATE NEW USER
+POST http://localhost:3000/users/signup
+Content-Type: application/json
+
+{
+    "email": "messiprohy@gmail.com",
+    "password": "123456"
+}
