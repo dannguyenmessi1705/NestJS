@@ -13,5 +13,9 @@ export class UsersService {
   async createUser(email: string, password: string) {
     const user = this.userRepository.create({ email, password }); // Truyền 1 object dữ liệu entity User vào phương thức create() để tạo mới một user
     await this.userRepository.save(user); // Lưu dữ liệu vào database
+    /**
+     * Tạo 1 entity table user với 2 cột email và password rồi mới đưa vào phương thức save() mục đích để cho hook decorator logInsert() chạy
+     * Nếu chạy thẳng save({email, password}) thì sẽ không chạy hook decorator logInsert()
+     */
   }
 }
