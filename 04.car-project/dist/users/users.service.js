@@ -25,6 +25,18 @@ let UsersService = class UsersService {
         const user = this.userRepository.create({ email, password });
         await this.userRepository.save(user);
     }
+    async getAllUsers() {
+        const users = await this.userRepository.find();
+        return users;
+    }
+    async getUserById(id) {
+        const user = await this.userRepository.findOneBy({ id });
+        return user;
+    }
+    async getUserByEmail(email) {
+        const user = await this.userRepository.findOne({ where: { email } });
+        return user;
+    }
 };
 exports.UsersService = UsersService;
 exports.UsersService = UsersService = __decorate([

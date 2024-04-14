@@ -18,4 +18,19 @@ export class UsersService {
      * Nếu chạy thẳng save({email, password}) thì sẽ không chạy hook decorator logInsert()
      */
   }
+
+  async getAllUsers() {
+    const users = await this.userRepository.find(); // Lấy tất cả dữ liệu từ table user
+    return users;
+  }
+
+  async getUserById(id: number) {
+    const user = await this.userRepository.findOneBy({ id }); // Lấy dữ liệu từ table user theo id
+    return user;
+  }
+
+  async getUserByEmail(email: string) {
+    const user = await this.userRepository.findOne({ where: { email } }); // Lấy dữ liệu từ table user theo email
+    return user;
+  }
 }

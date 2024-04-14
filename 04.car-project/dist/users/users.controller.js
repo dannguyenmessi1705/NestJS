@@ -23,6 +23,17 @@ let UsersController = class UsersController {
     signUp(user) {
         this.userService.createUser(user.email, user.password);
     }
+    getAllUsers() {
+        return this.userService.getAllUsers();
+    }
+    getUserById(id) {
+        return this.userService.getUserById(id);
+    }
+    getUserByEmail(query) {
+        console.log(query.email);
+        const user = this.userService.getUserByEmail(query.email);
+        return user;
+    }
 };
 exports.UsersController = UsersController;
 __decorate([
@@ -32,6 +43,26 @@ __decorate([
     __metadata("design:paramtypes", [auth_dto_1.AuthDto]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "signUp", null);
+__decorate([
+    (0, common_1.Get)('/all'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "getAllUsers", null);
+__decorate([
+    (0, common_1.Get)('/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "getUserById", null);
+__decorate([
+    (0, common_1.Get)('/'),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "getUserByEmail", null);
 exports.UsersController = UsersController = __decorate([
     (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])
