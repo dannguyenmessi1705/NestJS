@@ -51,12 +51,14 @@ __decorate([
 ], UsersController.prototype, "signUp", null);
 __decorate([
     (0, common_1.Get)('/all'),
+    (0, common_1.UseInterceptors)(common_1.ClassSerializerInterceptor),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "getAllUsers", null);
 __decorate([
     (0, common_1.Get)('/:id'),
+    (0, common_1.UseInterceptors)(common_1.ClassSerializerInterceptor),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
@@ -64,6 +66,7 @@ __decorate([
 ], UsersController.prototype, "getUserById", null);
 __decorate([
     (0, common_1.Get)('/'),
+    (0, common_1.UseInterceptors)(common_1.ClassSerializerInterceptor),
     __param(0, (0, common_1.Query)('email')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

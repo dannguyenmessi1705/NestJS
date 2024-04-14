@@ -7,6 +7,8 @@ import {
   AfterUpdate, // Decorator để thực thi một hàm sau khi update
 } from 'typeorm'; //Import các module cần thiết từ TypeORM
 
+import { Exclude } from 'class-transformer';
+
 @Entity() // Đánh dấu class này là một entity
 export class User {
   @PrimaryGeneratedColumn() // Đánh dấu cột này là primary key và tự động tăng
@@ -16,6 +18,7 @@ export class User {
   email: string;
 
   @Column() // Đánh dấu cột này là một cột trong database
+  @Exclude() // Decorator để ẩn cột password khi trả về response
   password: string;
 
   @AfterInsert() // Decorator để thực thi một hàm sau khi insert
