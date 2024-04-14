@@ -6,8 +6,10 @@ import {
   Body,
   Param,
   Query,
+  Delete,
 } from '@nestjs/common';
 import { AuthDto } from './dtos/auth.dto';
+import { UpdateUserDto } from './dtos/updateUser.dto';
 
 import { UsersService } from './users.service'; // Import UsersService từ file users.service.ts để sử dụng các phương thức xử lý logic
 @Controller('users')
@@ -26,9 +28,17 @@ export class UsersController {
     return this.userService.getUserById(id); // Gọi phương thức getUserById() từ service để lấy user theo id
   }
   @Get('/') // Tạo route GET /users/:email
-  getUserByEmail(@Query() query) {
-    console.log(query.email);
-    const user = this.userService.getUserByEmail(query.email); // Gọi phương thức getUserByEmail() từ service để lấy user theo email
+  getUserByEmail(@Query('email') email: string) {
+    const user = this.userService.getUserByEmail(email); // Gọi phương thức getUserByEmail() từ service để lấy user theo email
     return user;
+  }
+  @Patch('/:id') // Tạo route PATCH /users/:id
+  updateUser(@Param('id') id: number, @Body() attrs: UpdateUserDto) {
+    this.userService.updateUser(id, attrs); // Gọi phương thức updateUser() từ service để cập nhật user theo id
+  }
+
+  @Delete('/:id') // Tạo route DELETE /users/:id
+  deleteUser(@Param('id') id: number) {
+    this.userService.deleteUser(id); // Gọi phương thức deleteUser() từ service để xóa user theo id
   }
 }

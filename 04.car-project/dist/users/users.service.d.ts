@@ -7,4 +7,6 @@ export declare class UsersService {
     getAllUsers(): Promise<User[]>;
     getUserById(id: number): Promise<User>;
     getUserByEmail(email: string): Promise<User>;
+    updateUser(id: number, attrs: Partial<User>): Promise<void>;
+    deleteUser(id: number): Promise<void>;
 }

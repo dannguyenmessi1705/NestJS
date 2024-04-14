@@ -3,7 +3,7 @@ POST http://localhost:3000/users/signup
 Content-Type: application/json
 
 {
-    "email": "danprohy@gmail.com",
+    "email": "po@gmail.com",
     "password": "12345"
 }
 
@@ -17,4 +17,16 @@ Content-Type: application/json
 
 ### GET USER BY EMAIL
 GET http://localhost:3000/users?email=danprohy@gmail.com
+Content-Type: application/json
+
+### UPDATE USER
+PATCH http://localhost:3000/users/1
+Content-Type: application/json
+
+{
+    "email": "messi@gmail.com"
+}
+
+### DELETE USER
+DELETE http://localhost:3000/users/4
 Content-Type: application/json

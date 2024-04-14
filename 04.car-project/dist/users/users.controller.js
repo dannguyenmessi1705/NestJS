@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
 const auth_dto_1 = require("./dtos/auth.dto");
+const updateUser_dto_1 = require("./dtos/updateUser.dto");
 const users_service_1 = require("./users.service");
 let UsersController = class UsersController {
     constructor(userService) {
@@ -29,10 +30,15 @@ let UsersController = class UsersController {
     getUserById(id) {
         return this.userService.getUserById(id);
     }
-    getUserByEmail(query) {
-        console.log(query.email);
-        const user = this.userService.getUserByEmail(query.email);
+    getUserByEmail(email) {
+        const user = this.userService.getUserByEmail(email);
         return user;
+    }
+    updateUser(id, attrs) {
+        this.userService.updateUser(id, attrs);
+    }
+    deleteUser(id) {
+        this.userService.deleteUser(id);
     }
 };
 exports.UsersController = UsersController;
@@ -58,11 +64,26 @@ __decorate([
 ], UsersController.prototype, "getUserById", null);
 __decorate([
     (0, common_1.Get)('/'),
-    __param(0, (0, common_1.Query)()),
+    __param(0, (0, common_1.Query)('email')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "getUserByEmail", null);
+__decorate([
+    (0, common_1.Patch)('/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, updateUser_dto_1.UpdateUserDto]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "updateUser", null);
+__decorate([
+    (0, common_1.Delete)('/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "deleteUser", null);
 exports.UsersController = UsersController = __decorate([
     (0, common_1.Controller)('users'),
     __metadata("design:paramtypes", [users_service_1.UsersService])

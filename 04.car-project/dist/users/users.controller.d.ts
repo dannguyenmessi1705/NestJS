@@ -1,4 +1,5 @@
 import { AuthDto } from './dtos/auth.dto';
+import { UpdateUserDto } from './dtos/updateUser.dto';
 import { UsersService } from './users.service';
 export declare class UsersController {
     private userService;
@@ -6,5 +7,7 @@ export declare class UsersController {
     signUp(user: AuthDto): void;
     getAllUsers(): Promise<import("./users.entity").User[]>;
     getUserById(id: number): Promise<import("./users.entity").User>;
-    getUserByEmail(query: any): Promise<import("./users.entity").User>;
+    getUserByEmail(email: string): Promise<import("./users.entity").User>;
+    updateUser(id: number, attrs: UpdateUserDto): void;
+    deleteUser(id: number): void;
 }
