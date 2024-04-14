@@ -16,6 +16,8 @@ exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
 const auth_dto_1 = require("./dtos/auth.dto");
 const updateUser_dto_1 = require("./dtos/updateUser.dto");
+const user_dto_1 = require("./dtos/user.dto");
+const serialize_interceptor_1 = require("../interceptors/serialize.interceptor");
 const users_service_1 = require("./users.service");
 let UsersController = class UsersController {
     constructor(userService) {
@@ -51,14 +53,12 @@ __decorate([
 ], UsersController.prototype, "signUp", null);
 __decorate([
     (0, common_1.Get)('/all'),
-    (0, common_1.UseInterceptors)(common_1.ClassSerializerInterceptor),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "getAllUsers", null);
 __decorate([
     (0, common_1.Get)('/:id'),
-    (0, common_1.UseInterceptors)(common_1.ClassSerializerInterceptor),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
@@ -66,7 +66,6 @@ __decorate([
 ], UsersController.prototype, "getUserById", null);
 __decorate([
     (0, common_1.Get)('/'),
-    (0, common_1.UseInterceptors)(common_1.ClassSerializerInterceptor),
     __param(0, (0, common_1.Query)('email')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -89,6 +88,7 @@ __decorate([
 ], UsersController.prototype, "deleteUser", null);
 exports.UsersController = UsersController = __decorate([
     (0, common_1.Controller)('users'),
+    (0, serialize_interceptor_1.Serialize)(user_dto_1.UserDto),
     __metadata("design:paramtypes", [users_service_1.UsersService])
 ], UsersController);
 //# sourceMappingURL=users.controller.js.map
