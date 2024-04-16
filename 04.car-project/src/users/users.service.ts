@@ -27,7 +27,7 @@ export class UsersService {
   async getUserById(id: number) {
     const user = await this.userRepository.findOneBy({ id }); // Lấy dữ liệu từ table user theo id
     if (!user) {
-      throw new NotFoundException('User not found');
+      return null;
     }
     return user;
   }
@@ -35,7 +35,7 @@ export class UsersService {
   async getUserByEmail(email: string) {
     const user = await this.userRepository.findOne({ where: { email } }); // Lấy dữ liệu từ table user theo email
     if (!user) {
-      throw new NotFoundException('User not found');
+      return null;
     } // Kiểm tra xem user có tồn tại không
     return user;
   }
@@ -63,6 +63,6 @@ export class UsersService {
     // await this.userRepository.remove(user); // Xóa dữ liệu từ table user theo id
 
     // -- SỬ DỤNG delete() ĐỂ XÓA DỮ LIỆU NHƯNG KHÔNG CHẠY HOOK DECORATOR logRemove()
-    await this.userRepository.delete(id); // Xóa dữ liệu từ table user theo id 
+    await this.userRepository.delete(id); // Xóa dữ liệu từ table user theo id
   }
 }

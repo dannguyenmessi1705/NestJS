@@ -32,14 +32,14 @@ let UsersService = class UsersService {
     async getUserById(id) {
         const user = await this.userRepository.findOneBy({ id });
         if (!user) {
-            throw new common_1.NotFoundException('User not found');
+            return null;
         }
         return user;
     }
     async getUserByEmail(email) {
         const user = await this.userRepository.findOne({ where: { email } });
         if (!user) {
-            throw new common_1.NotFoundException('User not found');
+            return null;
         }
         return user;
     }

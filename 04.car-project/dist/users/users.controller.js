@@ -19,12 +19,19 @@ const updateUser_dto_1 = require("./dtos/updateUser.dto");
 const user_dto_1 = require("./dtos/user.dto");
 const serialize_interceptor_1 = require("../interceptors/serialize.interceptor");
 const users_service_1 = require("./users.service");
+const auth_service_1 = require("./auth.service");
 let UsersController = class UsersController {
-    constructor(userService) {
+    constructor(userService, authService) {
         this.userService = userService;
+        this.authService = authService;
     }
-    signUp(user) {
-        this.userService.createUser(user.email, user.password);
+    async signUp(body) {
+        try {
+            await this.authService.signup(body.email, body.password);
+        }
+        catch (error) {
+            throw new common_1.HttpException(error.message, error.status);
+        }
     }
     getAllUsers() {
         return this.userService.getAllUsers();
@@ -49,7 +56,7 @@ __decorate([
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [auth_dto_1.AuthDto]),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], UsersController.prototype, "signUp", null);
 __decorate([
     (0, common_1.Get)('/all'),
@@ -89,6 +96,7 @@ __decorate([
 exports.UsersController = UsersController = __decorate([
     (0, common_1.Controller)('users'),
     (0, serialize_interceptor_1.Serialize)(user_dto_1.UserDto),
-    __metadata("design:paramtypes", [users_service_1.UsersService])
+    __metadata("design:paramtypes", [users_service_1.UsersService,
+        auth_service_1.AuthService])
 ], UsersController);
 //# sourceMappingURL=users.controller.js.map
