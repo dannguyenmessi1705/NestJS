@@ -1,4 +1,8 @@
-import { Injectable, BadRequestException } from '@nestjs/common';
+import {
+  Injectable,
+  BadRequestException,
+  NotFoundException,
+} from '@nestjs/common';
 import { randomBytes, scrypt as _scrypt } from 'crypto';
 // RandomBytes: Tạo một chuỗi ngẫu nhiên
 // Scrypt: Hash password
@@ -31,5 +35,25 @@ export class AuthService {
     // Tạo user mới với email và password đã hash
     const newUser = await this.userService.createUser(email, result);
     return newUser;
+  }
+
+  async signin(email: string, password: string) {
+    // Kiểm tra xem email có tồn tại trong database không
+    const user = await this.userService.getUserByEmail(email);
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    // Tách salt và hash password từ password trong database
+    const [salt, storeHash] = user.password.split('.'); // Tách salt và hash password từ password trong database
+
+    // Hash password với salt từ database
+    const hash = (await scrypt(password, salt, 32)) as Buffer; // Hash password với salt từ database và 32 bytes => Chuỗi hash có 64 ký tự và chuyển sang dạng Buffer
+
+    // So sánh hash password từ database và hash password từ client
+    if (storeHash !== hash.toString('hex')) {
+      throw new BadRequestException('Invalid password');
+    }
+    return user;
   }
 }

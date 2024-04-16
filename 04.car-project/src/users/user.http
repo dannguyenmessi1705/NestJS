@@ -7,6 +7,15 @@ Content-Type: application/json
     "password": "12345"
 }
 
+### SIGN IN
+POST http://localhost:3000/users/signin
+Content-Type: application/json
+
+{
+    "email": "messiprohy@gmail.com",
+    "password": "12345"
+}
+
 ### GET ALL USER
 GET http://localhost:3000/users/all
 Content-Type: application/json

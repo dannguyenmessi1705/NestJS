@@ -26,12 +26,10 @@ let UsersController = class UsersController {
         this.authService = authService;
     }
     async signUp(body) {
-        try {
-            await this.authService.signup(body.email, body.password);
-        }
-        catch (error) {
-            throw new common_1.HttpException(error.message, error.status);
-        }
+        await this.authService.signup(body.email, body.password);
+    }
+    async sigin(body) {
+        await this.authService.signin(body.email, body.password);
     }
     getAllUsers() {
         return this.userService.getAllUsers();
@@ -58,6 +56,13 @@ __decorate([
     __metadata("design:paramtypes", [auth_dto_1.AuthDto]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "signUp", null);
+__decorate([
+    (0, common_1.Post)('signin'),
+    __param(0, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [auth_dto_1.AuthDto]),
+    __metadata("design:returntype", Promise)
+], UsersController.prototype, "sigin", null);
 __decorate([
     (0, common_1.Get)('/all'),
     __metadata("design:type", Function),

@@ -25,13 +25,13 @@ export class UsersController {
   ) {}
   @Post('signup') // Tạo route POST /users/signup
   async signUp(@Body() body: AuthDto) {
-    try {
-      await this.authService.signup(body.email, body.password); // Gọi phương thức signup() từ service để tạo mới user
-    } catch (error) {
-      throw new HttpException(error.message, error.status);
-    }
+    await this.authService.signup(body.email, body.password); // Gọi phương thức signup() từ service để tạo mới user
   }
 
+  @Post('signin') // Tạo route POST /users/signin
+  async sigin(@Body() body: AuthDto) {
+    await this.authService.signin(body.email, body.password); // Gọi phương thức signin() từ service để đăng nhập user
+  }
   @Get('/all') // Tạo route GET /users/all
   getAllUsers() {
     return this.userService.getAllUsers(); // Gọi phương thức getAllUsers() từ service để lấy tất cả user
