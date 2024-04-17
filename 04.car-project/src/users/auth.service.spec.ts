@@ -57,4 +57,12 @@ describe('AuthService', () => {
     ); // Kiểm tra xem method signup có throw BadRequestException khi email đã tồn tại chưa
   });
 
+  // ** TEST EMAIL IS EXISTED IN SIGNIN METHOD ** //
+  it('Test signin method', async () => {
+    fakeUsersService.getUserByEmail = (email: string) =>
+      Promise.resolve(null as User); // Tạo 1 user giả với email không tồn tại trong database để test method signin
+    await expect(service.signin('abc@gmail.com', '12345')).rejects.toThrow(
+      NotFoundException,
+    );
+  });
 }); // Tạo 1 group test cho AuthService để quản lý các unit test
