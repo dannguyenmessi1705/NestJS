@@ -19,6 +19,9 @@ Content-Type: application/json
 ### GET CURRENT USER
 GET http://localhost:3000/users/whoami
 
+### SIGN OUT
+POST http://localhost:3000/users/signout
+
 ### GET ALL USER
 GET http://localhost:3000/users/all
 Content-Type: application/json

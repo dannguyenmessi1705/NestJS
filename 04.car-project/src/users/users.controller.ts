@@ -42,6 +42,12 @@ export class UsersController {
     session.user_id = user.id; // Lưu user_id vào session
     return user;
   }
+
+  @Post('signout') // Tạo route POST /users/signout
+  signout(@Session() session: any) {
+    session.user_id = null; // Xóa user_id trong session
+  }
+
   @Get('/all') // Tạo route GET /users/all
   getAllUsers() {
     return this.userService.getAllUsers(); // Gọi phương thức getAllUsers() từ service để lấy tất cả user

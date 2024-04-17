@@ -38,6 +38,9 @@ let UsersController = class UsersController {
         session.user_id = user.id;
         return user;
     }
+    signout(session) {
+        session.user_id = null;
+    }
     getAllUsers() {
         return this.userService.getAllUsers();
     }
@@ -79,6 +82,13 @@ __decorate([
     __metadata("design:paramtypes", [auth_dto_1.AuthDto, Object]),
     __metadata("design:returntype", Promise)
 ], UsersController.prototype, "sigin", null);
+__decorate([
+    (0, common_1.Post)('signout'),
+    __param(0, (0, common_1.Session)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], UsersController.prototype, "signout", null);
 __decorate([
     (0, common_1.Get)('/all'),
     __metadata("design:type", Function),

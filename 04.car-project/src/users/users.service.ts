@@ -26,6 +26,9 @@ export class UsersService {
   }
 
   async getUserById(id: number) {
+    if (!id) {
+      return null;
+    }
     const user = await this.userRepository.findOneBy({ id }); // Lấy dữ liệu từ table user theo id
     if (!user) {
       return null;

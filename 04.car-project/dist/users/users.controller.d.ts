@@ -9,6 +9,7 @@ export declare class UsersController {
     whoAmI(session: any): Promise<import("./users.entity").User>;
     signUp(body: AuthDto, session: any): Promise<import("./users.entity").User>;
     sigin(body: AuthDto, session: any): Promise<import("./users.entity").User>;
+    signout(session: any): void;
     getAllUsers(): Promise<import("./users.entity").User[]>;
     getUserById(id: number): Promise<import("./users.entity").User>;
     getUserByEmail(email: string): Promise<import("./users.entity").User>;
