@@ -48,4 +48,13 @@ describe('AuthService', () => {
     expect(hash).toBeDefined(); // Kiểm tra xem hash password đã được tạo chưa
   });
 
+  // ** TEST EMAIL ALREADY USE IN SIGNUP METHOD ** //
+  it('Test signup method', async () => {
+    fakeUsersService.getUserByEmail = (email: string) =>
+      Promise.resolve({ id: 1, email, password: '12345.6789' } as User); // Tạo 1 user giả với email đã tồn tại trong database để test method signup
+    await expect(service.signup('abcde@gmail.com', '12345')).rejects.toThrow(
+      BadRequestException,
+    ); // Kiểm tra xem method signup có throw BadRequestException khi email đã tồn tại chưa
+  });
+
 }); // Tạo 1 group test cho AuthService để quản lý các unit test
