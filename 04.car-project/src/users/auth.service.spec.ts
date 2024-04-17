@@ -74,4 +74,12 @@ describe('AuthService', () => {
       BadRequestException,
     ); // Kiểm tra xem method signin có throw BadRequestException khi password không đúng chưa
   });
+
+  // ** TEST RETURN USER IN SIGNIN METHOD ** //
+  it('Test return user in signin method', async () => {
+    fakeUsersService.getUserByEmail = (email: string) =>
+      Promise.resolve({ id: 1, email: email, password: '83ab87b7b524a62f.58083e48e7ad99f7be8e4850bc50b53ce34c13eae292a8273dbdd40221c6fd49' } as User); // Tạo 1 user giả với email tồn tại trong database để test method signin
+    const user = await service.signin('abc@gmail.com', '12345'); // Gọi method signin với email và password đúng
+    expect(user).toBeDefined(); // Kiểm tra xem method signin có trả về user không
+  });
 }); // Tạo 1 group test cho AuthService để quản lý các unit test
