@@ -16,6 +16,9 @@ Content-Type: application/json
     "password": "12345"
 }
 
+### GET CURRENT USER
+GET http://localhost:3000/users/whoami
+
 ### GET ALL USER
 GET http://localhost:3000/users/all
 Content-Type: application/json

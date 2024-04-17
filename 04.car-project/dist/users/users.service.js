@@ -24,6 +24,7 @@ let UsersService = class UsersService {
     async createUser(email, password) {
         const user = this.userRepository.create({ email, password });
         await this.userRepository.save(user);
+        return user;
     }
     async getAllUsers() {
         const users = await this.userRepository.find();

@@ -7,7 +7,7 @@ import {
   Param,
   Query,
   Delete,
-  HttpException,
+  Session,
 } from '@nestjs/common';
 import { AuthDto } from './dtos/auth.dto';
 import { UpdateUserDto } from './dtos/updateUser.dto';
@@ -23,14 +23,24 @@ export class UsersController {
     private userService: UsersService,
     private authService: AuthService,
   ) {}
+
+  @Get('whoami') // Tạo route GET /users/whoami
+  async whoAmI(@Session() session: any) {
+    return await this.userService.getUserById(session.user_id); // Gọi phương thức getUserById() từ service để lấy user theo user_id trong session
+  }
+
   @Post('signup') // Tạo route POST /users/signup
-  async signUp(@Body() body: AuthDto) {
-    await this.authService.signup(body.email, body.password); // Gọi phương thức signup() từ service để tạo mới user
+  async signUp(@Body() body: AuthDto, @Session() session: any) {
+    const user = await this.authService.signup(body.email, body.password); // Gọi phương thức signup() từ service để tạo mới user
+    session.user_id = user.id; // Lưu user_id vào session
+    return user;
   }
 
   @Post('signin') // Tạo route POST /users/signin
-  async sigin(@Body() body: AuthDto) {
-    await this.authService.signin(body.email, body.password); // Gọi phương thức signin() từ service để đăng nhập user
+  async sigin(@Body() body: AuthDto, @Session() session: any) {
+    const user = await this.authService.signin(body.email, body.password); // Gọi phương thức signin() từ service để đăng nhập user
+    session.user_id = user.id; // Lưu user_id vào session
+    return user;
   }
   @Get('/all') // Tạo route GET /users/all
   getAllUsers() {
