@@ -49,7 +49,7 @@ describe('AuthService', () => {
   });
 
   // ** TEST EMAIL ALREADY USE IN SIGNUP METHOD ** //
-  it('Test signup method', async () => {
+  it('Test email already used in signup method', async () => {
     fakeUsersService.getUserByEmail = (email: string) =>
       Promise.resolve({ id: 1, email, password: '12345.6789' } as User); // Tạo 1 user giả với email đã tồn tại trong database để test method signup
     await expect(service.signup('abcde@gmail.com', '12345')).rejects.toThrow(
@@ -58,11 +58,20 @@ describe('AuthService', () => {
   });
 
   // ** TEST EMAIL IS EXISTED IN SIGNIN METHOD ** //
-  it('Test signin method', async () => {
+  it('Test email isnot existed method', async () => {
     fakeUsersService.getUserByEmail = (email: string) =>
       Promise.resolve(null as User); // Tạo 1 user giả với email không tồn tại trong database để test method signin
     await expect(service.signin('abc@gmail.com', '12345')).rejects.toThrow(
       NotFoundException,
     );
+  });
+
+  // ** TEST INVALID PASSWORD IN SIGNIN METHOD ** //
+  it('Test invalid password in signin method', async () => {
+    fakeUsersService.getUserByEmail = (email: string) =>
+      Promise.resolve({ id: 1, email: email, password: '123456' } as User); // Tạo 1 user giả với email tồn tại trong database để test method signin
+    await expect(service.signin('abc@gmail.com', '12345')).rejects.toThrow(
+      BadRequestException,
+    ); // Kiểm tra xem method signin có throw BadRequestException khi password không đúng chưa
   });
 }); // Tạo 1 group test cho AuthService để quản lý các unit test
