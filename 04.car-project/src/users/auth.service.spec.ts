@@ -43,7 +43,7 @@ describe('AuthService', () => {
       ],
     }).compile(); // Compile module testing để sử dụng
 
-    service = module.get(AuthService); // Lấy AuthService từ module testing để sử dụng trong unit test gán lai cho biến service
+    service = module.get<AuthService>(AuthService); // Lấy AuthService từ module testing để sử dụng trong unit test gán lai cho biến service
   }); // Trước khi chạy các unit test, chúng ta cần khởi tạo môi trường test
 
   it('can be created instance of AuthService', async () => {
