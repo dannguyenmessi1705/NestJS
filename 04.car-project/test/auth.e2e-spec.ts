@@ -18,17 +18,16 @@ describe('Authentication System', () => {
 
   it('handles sign up request', async () => {
     const email = 'test@gmail.com';
-    return request(app.getHttpServer())
+    const { body } = await request(app.getHttpServer())
       .post('/users/signup') // Gửi request POST tới đường dẫn /users/signup
       .send({
         email,
         password: '12345',
       }) // Gửi email và password trong body của request
-      .expect(201) // Mong muốn nhận được status code 201 từ server sau khi gửi request
-      .then((res) => {
-        expect(res.body.id).toBeDefined(); // Kiểm tra xem id của user đã được tạo chưa
-        expect(res.body.email).toEqual(email); // Kiểm tra xem email của user đã được tạo chưa
-      });
+      .expect(201); // Mong muốn nhận được status code 201 từ server sau khi gửi request
+
+    expect(body.id).toBeDefined(); // Kiểm tra xem id của user đã được tạo chưa
+    expect(body.email).toEqual(email); // Kiểm tra xem email của user đã được tạo chưa
   }); // Mô tả một unit test với tên là handles sign up
   /** CHẠY SẼ LỖI Ở ĐÂY VÌ APP CÒN CÓ THÊM PHỤ THUỘC KHÁC NHƯ COOKIE SESSION, VALIDATION PIPE MÀ CHƯA ĐƯỢC KHỞI TẠO */
   /*
