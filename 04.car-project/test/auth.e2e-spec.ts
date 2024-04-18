@@ -31,6 +31,39 @@ describe('Authentication System', async () => {
       });
   }); // Mô tả một unit test với tên là handles sign up
   /** CHẠY SẼ LỖI Ở ĐÂY VÌ APP CÒN CÓ THÊM PHỤ THUỘC KHÁC NHƯ COOKIE SESSION, VALIDATION PIPE MÀ CHƯA ĐƯỢC KHỞI TẠO */
+  /*
+  Để khắc phục lỗi này, chúng ta cần phải mock các phụ thuộc của AppModule như CookieSession, ValidationPipe, ... để chạy được unit test
+  Hoặc đưa các phụ thuộc này vào trong AppModule để chạy được unit test, thay vì config trong main.ts
+  VD:
+  app.module.ts
+  import { Module, ValidationPipe, MiddlewareConsumer } from '@nestjs/common';
+  import { APP_PIPE } from '@nestjs/core';
+  import { AppController } from './app.controller';
+  import { AppService } from './app.service';
+  import cookieSession from 'cookie-session';
+
+  @Module({
+    imports: [],
+    controllers: [AppController],
+    providers: [
+      AppService,
+      {
+        provide: APP_PIPE,
+        useValue: new ValidationPipe({
+          whitelist: true,
+        }),
+      },
+    ]
+    export class AppModule {
+      configure(consumer: MiddlewareConsumer) { // Sử dụng cookie-session cho tất cả các route
+        consumer.apply(cookieSession
+        ({
+          keys: ['key1'], 
+        })).forRoutes('*'); // Sử dụng cookie-session cho tất cả các route
+    }
+
+    Tuy nhiên, vẫn còn 1 lỗi nữa là phải phân biệt giữa môi trường test và môi trường phát triển để database không bị xung đột
+  */
 
   afterEach(async () => {
     await app.close(); // Đóng ứng dụng sau khi chạy xong các unit test
