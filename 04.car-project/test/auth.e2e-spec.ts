@@ -21,7 +21,7 @@ describe('Authentication System', () => {
     return request(app.getHttpServer())
       .post('/users/signup') // Gửi request POST tới đường dẫn /users/signup
       .send({
-        email: 'test@gmail.com',
+        email,
         password: '12345',
       }) // Gửi email và password trong body của request
       .expect(201) // Mong muốn nhận được status code 201 từ server sau khi gửi request
