@@ -19,7 +19,7 @@ export class Report {
   make: string;
 
   @Column()
-  modal: string;
+  model: string;
 
   @Column()
   year: number;

@@ -3,11 +3,11 @@ POST http://localhost:3000/reports
 Content-Type: application/json
 
 {
-    "make": "Vinfast",
-    "model": "Fadil",
-    "year": 2019,
+    "make": "Audi",
+    "model": "A4",
+    "year": 2018,
     "lng": 0,
     "lat": 0,
-    "mileage": 10000,
-    "price": 20000
+    "mileage": 20000,
+    "price": 30000
 }
