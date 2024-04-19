@@ -1,0 +1,13 @@
+# CREATE REPORT BY USER
+POST http://localhost:3000/reports
+Content-Type: application/json
+
+{
+    "make": "Vinfast",
+    "model": "Fadil",
+    "year": 2019,
+    "lng": 0,
+    "lat": 0,
+    "mileage": 10000,
+    "price": 20000
+}

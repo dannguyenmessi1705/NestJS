@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 const typeorm_1 = require("typeorm");
+const reports_entity_1 = require("../reports/reports.entity");
 let User = class User {
     logInsert() {
         console.log('Inserted User with id', this.id);
@@ -53,6 +54,10 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
 ], User.prototype, "logUpdate", null);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => reports_entity_1.Report, (report) => report.user),
+    __metadata("design:type", Array)
+], User.prototype, "reports", void 0);
 exports.User = User = __decorate([
     (0, typeorm_1.Entity)()
 ], User);

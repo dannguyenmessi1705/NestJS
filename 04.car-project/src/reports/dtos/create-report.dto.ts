@@ -12,7 +12,7 @@ export class CreateReportDto {
   make: string;
 
   @IsString()
-  modal: string;
+  model: string;
 
   @IsNumber()
   @Min(1930)

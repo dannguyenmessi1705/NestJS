@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Report = void 0;
 const typeorm_1 = require("typeorm");
+const users_entity_1 = require("../users/users.entity");
 let Report = class Report {
 };
 exports.Report = Report;
@@ -22,6 +23,34 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Number)
 ], Report.prototype, "price", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Report.prototype, "make", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Report.prototype, "modal", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Report.prototype, "year", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Report.prototype, "mileage", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Report.prototype, "lat", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Report.prototype, "lng", void 0);
+__decorate([
+    (0, typeorm_1.ManyToOne)(() => users_entity_1.User, (user) => user.reports),
+    __metadata("design:type", users_entity_1.User)
+], Report.prototype, "user", void 0);
 exports.Report = Report = __decorate([
     (0, typeorm_1.Entity)()
 ], Report);
