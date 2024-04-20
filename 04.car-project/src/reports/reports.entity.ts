@@ -12,6 +12,9 @@ export class Report {
   @PrimaryGeneratedColumn() // Đánh dấu cột này là primary key và tự động tăng
   id: number;
 
+  @Column({ default: false }) // Đánh dấu cột này là một cột trong database, default: false để mặc định giá trị của cột này là false
+  approved: boolean;
+
   @Column() // Đánh dấu cột này là một cột trong database
   price: number;
 

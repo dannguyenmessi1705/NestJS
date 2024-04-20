@@ -48,6 +48,10 @@ __decorate([
 ], ReportDto.prototype, "price", void 0);
 __decorate([
     (0, class_transformer_1.Expose)(),
+    __metadata("design:type", Boolean)
+], ReportDto.prototype, "approved", void 0);
+__decorate([
+    (0, class_transformer_1.Expose)(),
     (0, class_transformer_1.Transform)(({ obj }) => obj.user.id),
     __metadata("design:type", Number)
 ], ReportDto.prototype, "userId", void 0);

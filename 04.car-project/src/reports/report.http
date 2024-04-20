@@ -1,13 +1,21 @@
-# CREATE REPORT BY USER
+### CREATE REPORT BY USER
 POST http://localhost:3000/reports
 Content-Type: application/json
 
 {
     "make": "Audi",
-    "model": "A4",
+    "model": "A5",
     "year": 2018,
     "lng": 0,
     "lat": 0,
     "mileage": 20000,
     "price": 30000
+}
+
+### APPROVE REPORT
+PATCH http://localhost:3000/reports/3
+Content-Type: application/json
+
+{
+    "approved": "true"
 }

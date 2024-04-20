@@ -29,6 +29,9 @@ export class ReportDto {
   price: number;
 
   @Expose()
+  approved: boolean;
+
+  @Expose()
   @Transform(({ obj }) => obj.user.id) // Biến đổi trước khi trả về response, lấy id của user tạo ra report
   // obj là object hiện tại (Report), user là field trong object hiện tại
   userId: number;

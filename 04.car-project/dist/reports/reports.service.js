@@ -27,6 +27,15 @@ let ReportsService = class ReportsService {
         await this.reportRepository.save(report);
         return report;
     }
+    async approveReport(id, approved) {
+        let report = await this.reportRepository.findOne({ where: { id } });
+        if (!report) {
+            throw new common_1.NotFoundException('Report not found');
+        }
+        report.approved = approved;
+        await this.reportRepository.save(report);
+        return report;
+    }
 };
 exports.ReportsService = ReportsService;
 exports.ReportsService = ReportsService = __decorate([

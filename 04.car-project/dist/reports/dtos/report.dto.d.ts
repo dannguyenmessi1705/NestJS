@@ -7,5 +7,6 @@ export declare class ReportDto {
     lat: number;
     mileage: number;
     price: number;
+    approved: boolean;
     userId: number;
 }
