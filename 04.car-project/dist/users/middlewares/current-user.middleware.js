@@ -9,21 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserDto = void 0;
-const class_transformer_1 = require("class-transformer");
-class UserDto {
-}
-exports.UserDto = UserDto;
-__decorate([
-    (0, class_transformer_1.Expose)(),
-    __metadata("design:type", Number)
-], UserDto.prototype, "id", void 0);
-__decorate([
-    (0, class_transformer_1.Expose)(),
-    __metadata("design:type", String)
-], UserDto.prototype, "email", void 0);
-__decorate([
-    (0, class_transformer_1.Expose)(),
-    __metadata("design:type", Boolean)
-], UserDto.prototype, "admin", void 0);
-//# sourceMappingURL=user.dto.js.map
+exports.CurrentUserMiddleware = void 0;
+const common_1 = require("@nestjs/common");
+const users_service_1 = require("../users.service");
+let CurrentUserMiddleware = class CurrentUserMiddleware {
+    constructor(userService) {
+        this.userService = userService;
+    }
+    async use(req, res, next) {
+        const { user_id } = req.session || {};
+        if (user_id) {
+            const user = await this.userService.getUserById(user_id);
+            req.user = user;
+        }
+        next();
+    }
+};
+exports.CurrentUserMiddleware = CurrentUserMiddleware;
+exports.CurrentUserMiddleware = CurrentUserMiddleware = __decorate([
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [users_service_1.UsersService])
+], CurrentUserMiddleware);
+//# sourceMappingURL=current-user.middleware.js.map

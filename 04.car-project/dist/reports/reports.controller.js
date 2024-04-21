@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ReportsController = void 0;
 const common_1 = require("@nestjs/common");
 const auth_guard_1 = require("../guard/auth.guard");
+const admin_guard_1 = require("../guard/admin.guard");
 const create_report_dto_1 = require("./dtos/create-report.dto");
 const report_dto_1 = require("./dtos/report.dto");
 const approve_report_dto_1 = require("./dtos/approve-report.dto");
@@ -46,6 +47,7 @@ __decorate([
 ], ReportsController.prototype, "createReport", null);
 __decorate([
     (0, common_1.Patch)('/:id'),
+    (0, common_1.UseGuards)(admin_guard_1.AdminGuard),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),

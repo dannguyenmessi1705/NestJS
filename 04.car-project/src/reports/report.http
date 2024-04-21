@@ -3,7 +3,7 @@ POST http://localhost:3000/reports
 Content-Type: application/json
 
 {
-    "make": "Audi",
+    "make": "Mercedes",
     "model": "A5",
     "year": 2018,
     "lng": 0,
@@ -13,9 +13,9 @@ Content-Type: application/json
 }
 
 ### APPROVE REPORT
-PATCH http://localhost:3000/reports/3
+PATCH http://localhost:3000/reports/4
 Content-Type: application/json
 
 {
-    "approved": "true"
+    "approved": true
 }

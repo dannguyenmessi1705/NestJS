@@ -18,7 +18,7 @@ export class User {
   @Column() // Đánh dấu cột này là một cột trong database
   email: string;
 
-  @Column({ default: true }) // Đánh dấu cột này là một cột trong database
+  @Column({ default: false }) // Đánh dấu cột này là một cột trong database
   admin: boolean;
 
   @Column() // Đánh dấu cột này là một cột trong database
