@@ -9,7 +9,6 @@ import {
 } from 'typeorm'; //Import các module cần thiết từ TypeORM
 
 import { Report } from 'src/reports/reports.entity';
-import { report } from 'process';
 
 @Entity() // Đánh dấu class này là một entity
 export class User {
@@ -18,6 +17,9 @@ export class User {
 
   @Column() // Đánh dấu cột này là một cột trong database
   email: string;
+
+  @Column({ default: true }) // Đánh dấu cột này là một cột trong database
+  admin: boolean;
 
   @Column() // Đánh dấu cột này là một cột trong database
   password: string;

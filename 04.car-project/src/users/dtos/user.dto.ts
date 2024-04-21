@@ -8,4 +8,7 @@ export class UserDto {
 
   @Expose() // Đánh dấu key muốn trả về
   email: string;
+
+  @Expose() // Đánh dấu key muốn trả về
+  admin: boolean;
 }
