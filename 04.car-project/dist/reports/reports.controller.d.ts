@@ -1,4 +1,5 @@
 import { CreateReportDto } from './dtos/create-report.dto';
+import { EstimateReportDto } from './dtos/estimate-report.dto';
 import { ApproveReportDto } from './dtos/approve-report.dto';
 import { ReportsService } from './reports.service';
 import { User } from 'src/users/users.entity';
@@ -7,4 +8,5 @@ export declare class ReportsController {
     constructor(reportService: ReportsService);
     createReport(body: CreateReportDto, user: User): Promise<import("./reports.entity").Report>;
     approveReport(id: number, body: ApproveReportDto): Promise<import("./reports.entity").Report>;
+    queryReports(query: EstimateReportDto): Promise<import("./reports.entity").Report[]>;
 }

@@ -36,6 +36,18 @@ let ReportsService = class ReportsService {
         await this.reportRepository.save(report);
         return report;
     }
+    async getEstimateReport(query) {
+        return this.reportRepository
+            .createQueryBuilder()
+            .where('make = :make', { make: query.make })
+            .andWhere('model = :model', { model: query.model })
+            .andWhere('year - :year BETWEEN -3 AND 3', { year: query.year })
+            .andWhere('lng - :lng BETWEEN -5 AND 5', { lng: query.lng })
+            .andWhere('lat - :lat BETWEEN -5 AND 5', { lat: query.lat })
+            .orderBy('ABS(mileage - :mileage)', 'DESC')
+            .setParameters({ mileage: query.mileage })
+            .getMany();
+    }
 };
 exports.ReportsService = ReportsService;
 exports.ReportsService = ReportsService = __decorate([

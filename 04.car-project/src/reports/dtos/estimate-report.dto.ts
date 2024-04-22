@@ -9,7 +9,7 @@ import {
 
 import { Transform } from 'class-transformer'; // decorator dùng để thay đổi giá trị của key trong object trước khi trả về response
 
-export class CreateReportDto {
+export class EstimateReportDto {
   @IsString()
   make: string;
 

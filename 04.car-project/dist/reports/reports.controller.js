@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const auth_guard_1 = require("../guard/auth.guard");
 const admin_guard_1 = require("../guard/admin.guard");
 const create_report_dto_1 = require("./dtos/create-report.dto");
+const estimate_report_dto_1 = require("./dtos/estimate-report.dto");
 const report_dto_1 = require("./dtos/report.dto");
 const approve_report_dto_1 = require("./dtos/approve-report.dto");
 const reports_service_1 = require("./reports.service");
@@ -32,6 +33,9 @@ let ReportsController = class ReportsController {
     }
     approveReport(id, body) {
         return this.reportService.approveReport(id, body.approved);
+    }
+    queryReports(query) {
+        return this.reportService.getEstimateReport(query);
     }
 };
 exports.ReportsController = ReportsController;
@@ -54,6 +58,13 @@ __decorate([
     __metadata("design:paramtypes", [Number, approve_report_dto_1.ApproveReportDto]),
     __metadata("design:returntype", void 0)
 ], ReportsController.prototype, "approveReport", null);
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Query)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [estimate_report_dto_1.EstimateReportDto]),
+    __metadata("design:returntype", void 0)
+], ReportsController.prototype, "queryReports", null);
 exports.ReportsController = ReportsController = __decorate([
     (0, common_1.Controller)('reports'),
     __metadata("design:paramtypes", [reports_service_1.ReportsService])

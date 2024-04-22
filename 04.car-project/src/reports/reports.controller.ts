@@ -6,10 +6,12 @@ import {
   UseGuards,
   Patch,
   Param,
+  Query,
 } from '@nestjs/common';
 import { AuthGuard } from 'src/guard/auth.guard';
 import { AdminGuard } from 'src/guard/admin.guard';
 import { CreateReportDto } from './dtos/create-report.dto';
+import { EstimateReportDto } from './dtos/estimate-report.dto';
 import { ReportDto } from './dtos/report.dto';
 import { ApproveReportDto } from './dtos/approve-report.dto';
 import { ReportsService } from './reports.service';
@@ -31,5 +33,10 @@ export class ReportsController {
   @UseGuards(AdminGuard)
   approveReport(@Param('id') id: number, @Body() body: ApproveReportDto) {
     return this.reportService.approveReport(id, body.approved);
+  }
+
+  @Get()
+  queryReports(@Query() query: EstimateReportDto) {
+    return this.reportService.getEstimateReport(query);
   }
 }

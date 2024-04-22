@@ -9,41 +9,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateReportDto = void 0;
+exports.EstimateReportDto = void 0;
 const class_validator_1 = require("class-validator");
 const class_transformer_1 = require("class-transformer");
-class CreateReportDto {
+class EstimateReportDto {
 }
-exports.CreateReportDto = CreateReportDto;
+exports.EstimateReportDto = EstimateReportDto;
 __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreateReportDto.prototype, "make", void 0);
+], EstimateReportDto.prototype, "make", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreateReportDto.prototype, "model", void 0);
+], EstimateReportDto.prototype, "model", void 0);
 __decorate([
     (0, class_transformer_1.Transform)(({ value }) => parseInt(value)),
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.Min)(1930),
     (0, class_validator_1.Max)(2024),
     __metadata("design:type", Number)
-], CreateReportDto.prototype, "year", void 0);
+], EstimateReportDto.prototype, "year", void 0);
 __decorate([
     (0, class_transformer_1.Transform)(({ value }) => parseFloat(value)),
     (0, class_validator_1.IsLongitude)(),
     __metadata("design:type", Number)
-], CreateReportDto.prototype, "lng", void 0);
+], EstimateReportDto.prototype, "lng", void 0);
 __decorate([
     (0, class_transformer_1.Transform)(({ value }) => parseFloat(value)),
     (0, class_validator_1.IsLatitude)(),
     __metadata("design:type", Number)
-], CreateReportDto.prototype, "lat", void 0);
+], EstimateReportDto.prototype, "lat", void 0);
 __decorate([
     (0, class_transformer_1.Transform)(({ value }) => parseInt(value)),
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.Min)(0),
     __metadata("design:type", Number)
-], CreateReportDto.prototype, "mileage", void 0);
+], EstimateReportDto.prototype, "mileage", void 0);
 //# sourceMappingURL=estimate-report.dto.js.map

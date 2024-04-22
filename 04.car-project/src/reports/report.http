@@ -19,3 +19,6 @@ Content-Type: application/json
 {
     "approved": true
 }
+
+### QUERY REPORTS
+GET http://localhost:3000/reports?make=Mercedes&model=A5&year=2018&lng=5&lat=0&mileage=19995&price=30000

@@ -1,4 +1,4 @@
-export declare class CreateReportDto {
+export declare class EstimateReportDto {
     make: string;
     model: string;
     year: number;
